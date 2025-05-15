@@ -1,6 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 import { PrismaClient } from '@prisma/client'
+import path from 'path'
 
 const app = express()
 const prisma = new PrismaClient()
@@ -18,7 +19,10 @@ app.get('/', async (_req, res) => {
     res.status(500).json({ message: 'Erreur serveur' })
   }
 })
-
+app.use(
+  '/images',
+  express.static(path.join(__dirname, '..', 'public', 'images'))
+)
 const port = process.env.PORT || 3000
 app.listen(port, () => {
   console.log(`🚀 Server up on port ${port}`)
