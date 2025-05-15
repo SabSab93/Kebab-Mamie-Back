@@ -1,31 +1,25 @@
-import cors from "cors";
-import "dotenv/config";
-import express from "express";
+import express from 'express'
+import cors from 'cors'
+import { PrismaClient } from '@prisma/client'
 
+const app = express()
+const prisma = new PrismaClient()
 
-import { PrismaClient } from "@prisma/client";
-import { kebabRouter } from "./router/kebabs";
+app.use(cors())
+app.use(express.json())
 
+// GET / → liste des kebabs
+app.get('/', async (_req, res) => {
+  try {
+    const kebabs = await prisma.kebab.findMany()
+    res.json(kebabs)
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({ message: 'Erreur serveur' })
+  }
+})
 
-export const prisma = new PrismaClient();
-
-
-const app = express();
-
-
-app.use(cors()); 
-app.use(express.json());
-
-const apiRouter = express.Router();
-
-
-app.use('/', kebabRouter)
-
-
-
-
-
-
-app.listen(process.env.PORT, () => {
-  console.log(`Example app listening on port ${process.env.PORT}!`)
-});
+const port = process.env.PORT || 3000
+app.listen(port, () => {
+  console.log(`🚀 Server up on port ${port}`)
+})
