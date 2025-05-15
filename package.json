@@ -7,6 +7,9 @@
     "dev": "concurrently -k -n \"Typescript,Node\" -p \"[{name}]\" -c \"blue,green\" \"tsc --watch\" \"nodemon dist/index.js\"",
     "start": "tsc && node dist/index.js"
   },
+  "prisma": {
+    "seed": "ts-node --transpile-only prisma/seed.ts"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -20,7 +23,8 @@
     "concurrently": "^8.2.0",
     "nodemon": "^2.0.22",
     "prisma": "^6.5.0",
-    "typescript": "^5.1.6"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
   },
   "dependencies": {
     "@prisma/client": "^6.5.0",
