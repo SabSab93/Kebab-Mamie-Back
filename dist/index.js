@@ -14,8 +14,7 @@ const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 const apiRouter = express_1.default.Router();
-apiRouter.use("/kebabs", kebabs_1.kebabRouter);
-app.use("/api", apiRouter);
+app.use('/', kebabs_1.kebabRouter);
 app.listen(process.env.PORT, () => {
     console.log(`Example app listening on port ${process.env.PORT}!`);
 });
