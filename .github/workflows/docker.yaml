@@ -12,6 +12,6 @@ jobs:
       - name: Login to DockerHub
         run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
       - name: Build Docker image
-        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/demo-test:github-actions .
+        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/kebab-mamie:github-actions .
       - name: Push Docker image
-        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/demo-test:github-actions
+        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/kebab-mamie:github-actions
